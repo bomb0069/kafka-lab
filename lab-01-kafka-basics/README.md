@@ -35,11 +35,13 @@ services:
 ### Explanation:
 
 **Zookeeper Service:**
+
 - `image: bitnami/zookeeper:3.8` - Uses a stable Zookeeper version for cluster coordination
 - `ALLOW_ANONYMOUS_LOGIN=yes` - Allows connection without authentication (for learning purposes)
 - `ports: "2181:2181"` - Exposes Zookeeper's default port for client connections
 
 **Kafka Service:**
+
 - `image: bitnami/kafka:3.4` - Uses a stable Kafka version compatible with Zookeeper
 - `KAFKA_BROKER_ID=1` - Unique identifier for this Kafka broker in the cluster
 - `KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181` - Tells Kafka how to connect to Zookeeper
@@ -52,17 +54,20 @@ services:
 ### Why do we need both Zookeeper and Kafka?
 
 **Zookeeper's Role:**
+
 - **Cluster Management**: Keeps track of which Kafka brokers are alive and available
 - **Configuration Storage**: Stores metadata about topics, partitions, and broker configurations
 - **Leader Election**: Helps elect partition leaders when brokers fail or restart
 - **Synchronization**: Ensures consistency across the Kafka cluster
 
 **Kafka's Role:**
+
 - **Message Storage**: Stores and manages the actual message data
 - **Producer/Consumer API**: Handles incoming messages from producers and serves them to consumers
 - **Partition Management**: Manages data distribution across partitions for scalability
 
 **Startup Process:**
+
 1. Zookeeper starts first and creates its coordination services
 2. Kafka starts and registers itself with Zookeeper
 3. Kafka creates internal topics for coordination
