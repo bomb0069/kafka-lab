@@ -38,6 +38,7 @@ docker exec lab-02-multiple-topics-kafka-1 kafka-topics.sh --describe --topic to
 ### 4. Send Messages to Each Topic
 
 Send messages to topic1:
+
 ```sh
 docker exec -it lab-02-multiple-topics-kafka-1 kafka-console-producer.sh --topic topic1 --bootstrap-server localhost:9092
 ```
@@ -45,11 +46,13 @@ docker exec -it lab-02-multiple-topics-kafka-1 kafka-console-producer.sh --topic
 Type messages for topic1. Press Ctrl+C to exit.
 
 **Alternative: Send a message from command line:**
+
 ```sh
 echo "Message for topic1" | docker exec -i lab-02-multiple-topics-kafka-1 kafka-console-producer.sh --topic topic1 --bootstrap-server localhost:9092
 ```
 
 Send messages to topic2:
+
 ```sh
 docker exec -it lab-02-multiple-topics-kafka-1 kafka-console-producer.sh --topic topic2 --bootstrap-server localhost:9092
 ```
@@ -57,6 +60,7 @@ docker exec -it lab-02-multiple-topics-kafka-1 kafka-console-producer.sh --topic
 Type messages for topic2. Press Ctrl+C to exit.
 
 **Alternative: Send a message from command line:**
+
 ```sh
 echo "Message for topic2" | docker exec -i lab-02-multiple-topics-kafka-1 kafka-console-producer.sh --topic topic2 --bootstrap-server localhost:9092
 ```
@@ -66,16 +70,19 @@ echo "Message for topic2" | docker exec -i lab-02-multiple-topics-kafka-1 kafka-
 Open new terminals and consume messages from each topic:
 
 From topic1:
+
 ```sh
 docker exec -it lab-02-multiple-topics-kafka-1 kafka-console-consumer.sh --topic topic1 --bootstrap-server localhost:9092 --from-beginning
 ```
 
 From topic2:
+
 ```sh
 docker exec -it lab-02-multiple-topics-kafka-1 kafka-console-consumer.sh --topic topic2 --bootstrap-server localhost:9092 --from-beginning
 ```
 
 **Alternative: Read a limited number of messages:**
+
 ```sh
 docker exec lab-02-multiple-topics-kafka-1 kafka-console-consumer.sh --topic topic1 --bootstrap-server localhost:9092 --from-beginning --max-messages 5
 
